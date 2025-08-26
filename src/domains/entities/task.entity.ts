@@ -5,11 +5,15 @@ import { User } from './user.entity';
 export class Task {
   constructor(
     public readonly id: string,
-    public readonly title: string,
-    public readonly status: TaskStatus,
-    public readonly project: Project,
-    public readonly assignee?: User,
-    public readonly createdAt?: Date,
-    public readonly updatedAt?: Date,
+    public title: string,
+    public status: TaskStatus,
+    public project: Project,
+    public assignee?: User,
+    public createdAt?: Date,
+    public updatedAt?: Date,
   ) {}
+
+  public changeStatus(newStatus: TaskStatus): void {
+    this.status = newStatus;
+  }
 }
