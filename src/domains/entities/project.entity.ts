@@ -1,3 +1,4 @@
+import { Task } from './task.entity';
 import { User } from './user.entity';
 
 export class Project {
@@ -5,7 +6,7 @@ export class Project {
     public readonly id: string,
     public name: string,
     public owner: User,
-    public tasks: any[],
+    public tasks: Task[],
     public createdAt?: Date,
     public updatedAt?: Date,
   ) {}
