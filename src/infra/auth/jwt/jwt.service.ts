@@ -11,6 +11,6 @@ export class JwtService implements JwtTokenPort {
   }
 
   async verify(token: string, options?: object): Promise<any> {
-    await this.jwtService.verifyAsync(token, options);
+    return await this.jwtService.verifyAsync(token, options);
   }
 }
