@@ -9,11 +9,7 @@ describe('JwtService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         JwtModule.register({
-<<<<<<< HEAD
           secret: 'test-secret',
-=======
-          secret: 'test-secret', // pode ser qualquer string para teste
->>>>>>> 8898ebbc747e3efa7e4548a415cecc6e28ae1915
           signOptions: { expiresIn: '1h' },
         }),
       ],
