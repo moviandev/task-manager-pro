@@ -1,5 +1,5 @@
 import { Email } from '../valueObjects/email.vo';
-import { Role } from '../types/role.type';
+import { RoleType } from '../types/role.type';
 
 export class User {
   constructor(
@@ -7,7 +7,7 @@ export class User {
     public name: string,
     public email: Email,
     public password: string,
-    public role: Role,
+    public role: RoleType,
     public createdAt?: Date,
     public updatedAt?: Date,
   ) {}
