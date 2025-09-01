@@ -4,7 +4,7 @@ import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';
 import { Email } from '../../valueObjects/email.vo';
 
-describe('LoginUserUsecaseService', () => {
+describe('LoginUserUseCaseService', () => {
   let useCase: LoginUserUseCaseService;
   let userRepository: jest.Mocked<UserRepository>;
   let passwordHasher: jest.Mocked<PasswordHasherService>;
