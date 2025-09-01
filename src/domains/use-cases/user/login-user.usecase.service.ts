@@ -5,7 +5,7 @@ import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';
 
 @Injectable()
-export class LoginUserUsecaseService {
+export class LoginUserUseCaseService {
   constructor(private passwordHashService: PasswordHasherService,
     private userRepository: UserRepository,
     private jwtService: JwtService

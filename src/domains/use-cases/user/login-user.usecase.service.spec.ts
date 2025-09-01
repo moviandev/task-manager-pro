@@ -1,12 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { LoginUserUsecaseService } from './login-user.usecase.service';
+import { LoginUserUseCaseService } from './login-user.usecase.service';
 import { UserRepository } from '../../interfaces/repositories/user.repository.interface';
 import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';
 import { Email } from '../../valueObjects/email.vo';
 
 describe('LoginUserUsecaseService', () => {
-  let useCase: LoginUserUsecaseService;
+  let useCase: LoginUserUseCaseService;
   let userRepository: jest.Mocked<UserRepository>;
   let passwordHasher: jest.Mocked<PasswordHasherService>;
   let jwtService: jest.Mocked<JwtService>;
@@ -26,7 +25,7 @@ describe('LoginUserUsecaseService', () => {
       verify: jest.fn(),
     } as any;
 
-    useCase = new LoginUserUsecaseService(passwordHasher, userRepository, jwtService);
+    useCase = new LoginUserUseCaseService(passwordHasher, userRepository, jwtService);
   });
 
   it('should throw an unauthorized exception in case the user doesnt exists', async () => {
