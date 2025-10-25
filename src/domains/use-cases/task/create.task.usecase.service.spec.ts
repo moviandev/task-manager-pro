@@ -5,7 +5,7 @@ import { CreateTaskInput } from '../../interfaces/models/task/create.task.model'
 import { User } from '../../entities/user.entity';
 
 describe('CreateTaskUseCaseService', () => {
-  let userCase: CreateTaskUseCaseService;
+  let useCase: CreateTaskUseCaseService;
   let userRepository: jest.Mocked<UserRepository>;
   let taskRepository: jest.Mocked<TaskRepository>;
   let taskInput: CreateTaskInput;
@@ -26,11 +26,11 @@ describe('CreateTaskUseCaseService', () => {
       createTask: jest.fn()
     } as any;
 
-    userCase = new CreateTaskUseCaseService(taskRepository, userRepository);
+    useCase = new CreateTaskUseCaseService(taskRepository, userRepository);
   });
 
   it('should throw an error because email is wrong', async () => {
-    await expect(userCase.execute(taskInput))
+    await expect(useCase.execute(taskInput))
       .rejects.toThrow('Email is required');
   });
 
@@ -38,7 +38,7 @@ describe('CreateTaskUseCaseService', () => {
     taskInput.userEmail = 'test@test.com';
     userRepository.findByEmail.mockResolvedValue(null);
 
-    await expect(userCase.execute(taskInput))
+    await expect(useCase.execute(taskInput))
       .rejects.toThrow('User Not Found');
   });
 
@@ -69,7 +69,7 @@ describe('CreateTaskUseCaseService', () => {
       updatedAt: new Date()
     });
 
-    const createdTask = await userCase.execute(taskInput);
+    const createdTask = await useCase.execute(taskInput);
 
     expect(createdTask).toBeDefined();
     expect(createdTask.title).toBe('task test');

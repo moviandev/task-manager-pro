@@ -1,11 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { Task } from 'src/domains/entities/task.entity';
+import { Injectable } from '@nestjs/common';
+import { TaskStatus } from '@prisma/client';
+import { Task } from '../../../../domains/entities/task.entity';
 import { TaskRepository } from '../../../../domains/interfaces/repositories/task.repository.interface';
 import { PrismaService } from '../prisma.service';
-import { TaskStatus } from '@prisma/client';
-import { TaskStatusType } from 'src/domains/types/task-status.type';
-import { User } from 'src/domains/entities/user.entity';
-import { RoleType } from 'src/domains/types/role.type';
+import { TaskStatusType } from '../../../../domains/types/task-status.type';
+import { User } from '../../../../domains/entities/user.entity';
+import { RoleType } from '../../../../domains/types/role.type';
 
 @Injectable()
 export class TaskPrismaRepository implements TaskRepository{
@@ -42,28 +42,48 @@ export class TaskPrismaRepository implements TaskRepository{
     throw new Error('Method not implemented.');
   }
 
-  getTaskById(taskId: string): Promise<Task | null> {
-    throw new Error('Method not implemented.');
-  }
-
-  async updateTask(taskId: string, title: string, status: TaskStatusType): Promise<Task> {
+  async getTaskById(taskId: string): Promise<Task | null> {
+    // TODO: Include project
     const task = await this.prisma.task.findUnique({
       where: { id: taskId },
       include: { assignee: true }
     });
 
-    if (!task) throw new NotFoundException('Task not found');
-    
-    const statusValue = status as TaskStatus;
+    if (!task) return null;
 
-    task.title = title;
-    task.status = statusValue;
+    let user: User | undefined;
+    if (task.assignee) {
+      const role = task.assignee.role as RoleType;
+      user = {
+        id: task.assignee.id,
+        name: task.assignee.name,
+        email: { value: task.assignee.email },
+        password: task.assignee.password,
+        role: role,
+        createdAt: task.assignee.createdAt,
+        updatedAt: task.assignee.updatedAt,
+      };
+    }
+
+    return new Task(
+      task.id,
+      task.title,
+      task.status as TaskStatusType,
+      undefined,
+      user,
+      task.createdAt,
+      task.updatedAt,
+    );
+  }
+
+  async updateTask(task: Task): Promise<Task | null> {    
+    const statusValue = task.status as TaskStatus;
 
     const updatedTask = await this.prisma.task.update({
-      where: { id: taskId },
+      where: { id: task.id },
       data: {
         title: task.title,
-        status: task.status,
+        status: statusValue,
       },
       include: { assignee: true }
     });
