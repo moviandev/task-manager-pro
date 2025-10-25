@@ -1,1 +1,1 @@
-export type TaskStatusType = 'created' | 'pending' | 'in_progress' | 'completed';
+export type TaskStatusType = 'created' | 'pending' | 'in_progress' | 'done';
