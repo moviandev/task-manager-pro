@@ -1,4 +1,4 @@
-import { LoginUserUseCaseService } from './login-user.usecase.service';
+import { LoginUserUseCaseService } from './login.user.usecase.service';
 import { UserRepository } from '../../interfaces/repositories/user.repository.interface';
 import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';

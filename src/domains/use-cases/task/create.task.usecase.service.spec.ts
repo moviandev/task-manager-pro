@@ -1,4 +1,4 @@
-import { CreateTaskUseCaseService } from './create-task.usecase.service';
+import { CreateTaskUseCaseService } from './create.task.usecase.service';
 import { UserRepository } from '../../interfaces/repositories/user.repository.interface';
 import { TaskRepository } from '../../interfaces/repositories/task.repository.interface';
 import { CreateTaskInput } from '../../interfaces/models/task/create.task.model';

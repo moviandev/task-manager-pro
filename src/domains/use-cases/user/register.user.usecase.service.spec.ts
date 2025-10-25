@@ -1,4 +1,4 @@
-import { RegisterUserUseCaseService } from './register-user.usecase.service';
+import { RegisterUserUseCaseService } from './register.user.usecase.service';
 import { UserRepository } from 'src/domains/interfaces/repositories/user.repository.interface';
 import { PasswordHasherService } from 'src/shared/security/password-hasher.service';
 import { JwtService } from 'src/infra/auth/jwt/jwt.service';

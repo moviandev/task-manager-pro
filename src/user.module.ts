@@ -3,8 +3,8 @@ import { UserPrismaRepository } from './infra/db/prisma/repositories/user.reposi
 import { PrismaModule } from './infra/db/prisma/prisma.module';
 import { PasswordHasherService } from './shared/security/password-hasher.service';
 import { UserRepository } from './domains/interfaces/repositories/user.repository.interface';
-import { RegisterUserUseCaseService } from './domains/use-cases/user/register-user.usecase.service';
-import { LoginUserUseCaseService } from './domains/use-cases/user/login-user.usecase.service';
+import { RegisterUserUseCaseService } from './domains/use-cases/user/register.user.usecase.service';
+import { LoginUserUseCaseService } from './domains/use-cases/user/login.user.usecase.service';
 import { AuthModule } from './infra/auth/auth.module';
 
 @Module({
