@@ -12,8 +12,8 @@ import { AuthModule } from './infra/auth/auth.module';
   providers: [
     PasswordHasherService,
     {
-    provide: UserRepository,
-    useClass: UserPrismaRepository,
+      provide: UserRepository,
+      useClass: UserPrismaRepository,
     },
     RegisterUserUseCaseService,
     LoginUserUseCaseService

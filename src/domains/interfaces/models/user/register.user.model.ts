@@ -1,4 +1,4 @@
-import { RoleType } from 'src/domains/types/role.type';
+import { RoleType } from '../../../types/role.type';
 
 export interface RegisterUserInput {
   name: string;

@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginUserInput, LoginUserOutput } from '../../interfaces/models/user/login.user';
 import { UserRepository } from '../../interfaces/repositories/user.repository.interface';
 import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';
+import { LoginUserInput, LoginUserOutput } from '../../interfaces/models/user/login.user.model';
 
 @Injectable()
 export class LoginUserUseCaseService {

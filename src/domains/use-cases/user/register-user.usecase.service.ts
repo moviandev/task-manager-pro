@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../../entities/user.entity';
-import { RegisterUserInput, RegisterUserOutput } from '../../interfaces/models/user/register.user';
 import { UserRepository } from '../../interfaces/repositories/user.repository.interface';
 import { Email } from '../../valueObjects/email.vo';
 import { JwtService } from '../../../infra/auth/jwt/jwt.service';
 import { PasswordHasherService } from '../../../shared/security/password-hasher.service';
+import { RegisterUserInput, RegisterUserOutput } from '../../interfaces/models/user/register.user.model';
 
 @Injectable()
 export class RegisterUserUseCaseService {
