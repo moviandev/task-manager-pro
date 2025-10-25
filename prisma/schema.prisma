@@ -53,6 +53,7 @@ enum Role {
 }
 
 enum TaskStatus {
+  CREATED
   PENDING
   IN_PROGRESS
   DONE
