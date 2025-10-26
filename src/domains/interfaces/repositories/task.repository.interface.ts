@@ -5,5 +5,5 @@ export abstract class TaskRepository {
   abstract getTasksByUserId(userId: string): Promise<Task[]>;
   abstract getTaskById(taskId: string): Promise<Task | null>;
   abstract updateTask(task: Task): Promise<Task | null>;
-  abstract deleteTask(taskId: string): Promise<void>;
+  abstract deleteTask(taskId: string): Promise<Task | null>;
 }
