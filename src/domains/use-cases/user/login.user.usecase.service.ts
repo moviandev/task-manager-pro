@@ -12,25 +12,29 @@ export class LoginUserUseCaseService {
   ) { }
 
   async execute(login: LoginUserInput): Promise<LoginUserOutput> {
-    const { email, password } = login;
-    const user = await this.userRepository.findByEmail(email);
+    try {
+      const { email, password } = login;
+      const user = await this.userRepository.findByEmail(email);
 
-    if (!user) throw new UnauthorizedException('Invalid credentials');
+      if (!user) throw new UnauthorizedException('Invalid credentials');
 
-    const isPasswordValid = await this.passwordHashService.compare(password, user.password);
+      const isPasswordValid = await this.passwordHashService.compare(password, user.password);
 
-    if (!isPasswordValid) throw new UnauthorizedException('Invalid credentials');
+      if (!isPasswordValid) throw new UnauthorizedException('Invalid credentials');
 
-    const token = await this.jwtService.sign({ userId: user.id, role: user.role });
+      const token = await this.jwtService.sign({ userId: user.id, role: user.role });
 
-    return {
-      token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email.value,
-        role: user.role,
+      return {
+        token,
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email.value,
+          role: user.role,
+        }
       }
+    } catch (error) {
+      throw error;
     }
   }
 }

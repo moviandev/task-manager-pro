@@ -14,26 +14,30 @@ export class RegisterUserUseCaseService {
   ) { }
 
   async execute(input: RegisterUserInput): Promise<RegisterUserOutput> {
-    const email = Email.create(input.email);
+    try {
+      const email = Email.create(input.email);
 
-    const existingUser = await this.userRepository.findByEmail(email.value);
+      const existingUser = await this.userRepository.findByEmail(email.value);
 
-    if (existingUser) throw new Error('Email already in use');
+      if (existingUser) throw new Error('Email already in use');
 
-    const hashedPassword = await this.passwordHashService.hash(input.password);
+      const hashedPassword = await this.passwordHashService.hash(input.password);
 
-    const newUser = new User('', input.name, email, hashedPassword, input.role);
+      const newUser = new User('', input.name, email, hashedPassword, input.role);
 
-    const createdUser = await this.userRepository.createUser(newUser);
-    const token = await this.jwtService.sign({ userId: createdUser.id, role: createdUser.role });
-    return {
-      token,
-      user: {
-        id: createdUser.id,
-        name: createdUser.name,
-        email: createdUser.email.value,
-        role: createdUser.role,
-      },
+      const createdUser = await this.userRepository.createUser(newUser);
+      const token = await this.jwtService.sign({ userId: createdUser.id, role: createdUser.role });
+      return {
+        token,
+        user: {
+          id: createdUser.id,
+          name: createdUser.name,
+          email: createdUser.email.value,
+          role: createdUser.role,
+        },
+      }
+    } catch (error) {
+      throw error;
     }
   }
 }

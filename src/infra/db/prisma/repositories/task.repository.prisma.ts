@@ -38,7 +38,7 @@ export class TaskPrismaRepository implements TaskRepository{
         createdTask.updatedAt,
       );
     } catch (error) { 
-      throw new Error('Could not create task', error);
+      throw error;
     }
   }
 
@@ -80,7 +80,7 @@ export class TaskPrismaRepository implements TaskRepository{
         task.updatedAt,
       );
     } catch (error) {
-      throw new Error('Could not get task by id', error);
+      throw error;
     }
   }
 
@@ -121,7 +121,7 @@ export class TaskPrismaRepository implements TaskRepository{
         updatedTask.updatedAt,
       );
     } catch (error) {
-      throw new Error('Could not update task', error);
+      throw error;
     }
   }
 
@@ -141,7 +141,7 @@ export class TaskPrismaRepository implements TaskRepository{
         task.updatedAt,
       );
     } catch (error) {
-      throw new Error('Could not delete task', error);
+      throw error;
     }
    }
 }
